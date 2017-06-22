@@ -1,0 +1,2 @@
+# scrumbot
+Dumb Scrum Bot.
