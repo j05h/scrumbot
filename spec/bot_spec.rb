@@ -16,7 +16,7 @@ describe Scrum::Bot do
     end
 
     it 'responds with a report for the right channel' do
-      response = "Scrum report for #{Scrum::Bot.bot_time} in <@channel>:\n * <@user>: #{@report}"
+      response = "Scrum report for #{Scrum::Bot.bot_time} in <#channel>:\n * <@user>: #{@report}"
       expect(message: "#{SlackRubyBot.config.user} report #channel", channel: 'channel').to respond_with_slack_message(response)
     end
 
