@@ -11,13 +11,18 @@ module Scrum
     @reports = {}
 
     command 'help' do |client, data, match|
-      message = '''
+      message = """
 Hey, I am a bot who keeps track of scrum notes! I am not really all that smart now (Thanks <@j05h>)...
-By the way, I do not persist anything and I may not be stable.
-  Commands:
-    * help - displays this help
-    * report <channel> - reports the daily channel scrum.
-    * hi - I will say hi back to you.'''
+By the way, I do not persist anything and I may not be stable. Will get the former, cross fingers
+for the latter.
+
+Commands:
+  * <@#{SlackRubyBot.config.user}> this is my status - records your daily status for <##{data.channel}>
+  * report <channel> - reports the daily channel scrum (omit channel to get the local one)
+  * hi - I will say hi back to you.
+  * help - displays this help
+
+If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
       client.say(text: message, channel: data.channel)
     end
 
