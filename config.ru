@@ -18,6 +18,4 @@ Thread.new do
   end
 end
 
-c = Scrum::Bot.instance.send :client
-
 run Scrum::Web
