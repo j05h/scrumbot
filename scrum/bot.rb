@@ -1,4 +1,3 @@
-require 'byebug'
 module Scrum
   class Bot < SlackRubyBot::Bot
     class << self
