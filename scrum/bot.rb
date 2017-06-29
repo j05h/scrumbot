@@ -56,7 +56,7 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
     match (/^(?<bot>\S*)[\s]*(?<expression>.*)$/) do |client, data, match|
       report = match['expression']
 
-      client.say(channel: data.channel, text: ":white_check_mark:")
+      client.say(channel: data.channel, text: "+:white_check_mark:")
 
       reports[bot_time] ||= {}
       reports[bot_time][data.channel] ||= {}

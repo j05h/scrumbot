@@ -12,7 +12,7 @@ describe Scrum::Bot do
   context 'a report happened' do
     before do
       @report = "working on things and whatnot today"
-      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to respond_with_slack_message(":white_check_mark:")
+      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to respond_with_slack_message("+:white_check_mark:")
     end
 
     it 'responds with a report for the right channel' do
