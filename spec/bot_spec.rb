@@ -10,9 +10,13 @@ describe Scrum::Bot do
   it_behaves_like 'a slack ruby bot'
 
   context 'a report happened' do
+    around(:each) do |example|
+      VCR.use_cassette("reactions_add", &example)
+    end
+
     before do
       @report = "working on things and whatnot today"
-      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to respond_with_slack_message("+:white_check_mark:")
+      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to have_reactions(:white_check_mark)
     end
 
     it 'responds with a report for the right channel' do
