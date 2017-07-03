@@ -12,6 +12,8 @@ Set a SLACK_API_TOKEN variable either in a .env file, your environment, or with
 heroku config:add SLACK_API_TOKEN
 ```
 
+Set a DATABASE_URL by the same means above.
+
 ## Usage
 
 ScrumBot isn't all that smart (right now).

@@ -9,8 +9,7 @@ module Scrum
 
     command 'help' do |client, data, match|
       message = """
-Hey, I am a bot who keeps track of scrum notes! I am not really all that smart now (Thanks <@j05h>)...
-By the way, I do not persist anything and I may not be stable. Will get the former, cross fingers for the latter.
+Hey, I am a bot who keeps track of scrum notes!
 
 Commands:
   * <@scrum> this is my status - records your daily status for <##{data.channel}>
