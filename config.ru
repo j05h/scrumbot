@@ -5,6 +5,7 @@ Dotenv.load
 
 require 'scrumbot'
 require 'web'
+require 'db'
 
 Thread.abort_on_exception = true
 

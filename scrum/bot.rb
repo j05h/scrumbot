@@ -1,14 +1,11 @@
 module Scrum
   class Bot < SlackRubyBot::Bot
     class << self
-      attr_accessor :reports
 
       def bot_time
         Time.now.strftime("%Y-%m-%d")
       end
     end
-
-    @reports = {}
 
     command 'help' do |client, data, match|
       message = """
@@ -37,10 +34,10 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
         end
       end
 
-      channel_reports = reports[Scrum::Bot.bot_time][channel] rescue {}
+      channel_reports = Report.today(channel)
 
       response = if channel_reports && !channel_reports.empty?
-        items = channel_reports.map{|u,r| " * <@#{u}>: #{r}"}
+        items = channel_reports.map{|r| " * <@#{r.user}>: #{r.text}"}
         "Scrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
 
       else
@@ -54,7 +51,7 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
     end
 
     match (/^(?<bot>\S*)[\s]*(?<expression>.*)$/) do |client, data, match|
-      report = match['expression']
+      text = match['expression']
 
       client.web_client.reactions_add(
         name: :white_check_mark,
@@ -62,9 +59,7 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
         timestamp: data.ts,
         as_user: true)
 
-      reports[bot_time] ||= {}
-      reports[bot_time][data.channel] ||= {}
-      reports[bot_time][data.channel][data.user] = report
+      report = Report.create(text: text, channel: data.channel, user: data.user)
     end
   end
 end

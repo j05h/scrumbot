@@ -10,12 +10,12 @@ describe Scrum::Bot do
   it_behaves_like 'a slack ruby bot'
 
   context 'a report happened' do
-    around(:each) do |example|
-      VCR.use_cassette("reactions_add", &example)
-    end
-
     before do
       @report = "working on things and whatnot today"
+      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to have_reactions(:white_check_mark)
+    end
+
+    it 'responds with a reaction' do
       expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to have_reactions(:white_check_mark)
     end
 
@@ -27,6 +27,12 @@ describe Scrum::Bot do
     it 'does not respond if no channel exists' do
       response = "No one has checked in at <#another-channel>."
       expect(message: "#{SlackRubyBot.config.user} report #another-channel", channel: 'channel').to respond_with_slack_message(response)
+    end
+
+    it 'persists messages' do
+      start = Report.count
+      expect(message: "#{SlackRubyBot.config.user} #{@report}", channel: 'channel').to have_reactions(:white_check_mark)
+      expect(Report.count).to eq(start + 1)
     end
   end
 

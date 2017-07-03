@@ -50,6 +50,7 @@ GEM
     minitest (5.10.2)
     multipart-post (2.0.0)
     mustermann (1.0.0)
+    mysql2 (0.4.7)
     nio4r (2.1.0)
     public_suffix (2.0.5)
     puma (3.9.1)
@@ -73,6 +74,7 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     safe_yaml (1.0.4)
+    sequel (4.48.0)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -113,10 +115,12 @@ DEPENDENCIES
   celluloid-io
   dotenv
   foreman
+  mysql2
   puma
   rack-test
   rake
   rspec
+  sequel
   sinatra
   slack-ruby-bot
   vcr
