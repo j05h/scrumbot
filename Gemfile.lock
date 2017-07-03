@@ -50,8 +50,8 @@ GEM
     minitest (5.10.2)
     multipart-post (2.0.0)
     mustermann (1.0.0)
-    mysql2 (0.4.7)
     nio4r (2.1.0)
+    pg (0.21.0)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -115,7 +115,7 @@ DEPENDENCIES
   celluloid-io
   dotenv
   foreman
-  mysql2
+  pg
   puma
   rack-test
   rake

@@ -7,7 +7,7 @@ gem 'sinatra'
 gem 'dotenv'
 gem 'celluloid-io'
 gem 'sequel'
-gem 'mysql2'
+gem 'pg'
 
 group :development, :test do
   gem 'rake'
