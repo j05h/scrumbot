@@ -12,7 +12,7 @@ module Scrum
         if channel_reports && !channel_reports.empty?
           channel_reports.each do |channel, reports|
             items = reports.map{|r| " * <@#{r.user}>: #{r.text}"}
-            response << "Scrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
+            response << "\n\nScrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
           end
         else
           "No one has checked in at Today"
