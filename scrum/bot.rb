@@ -52,7 +52,7 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
 
       response = if channel_reports && !channel_reports.empty?
         items = channel_reports.map{|r| " * <@#{r.user}>: #{r.text}"}
-        "Scrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
+        "\n\nScrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
 
       else
         "No one has checked in at <##{channel}>."
