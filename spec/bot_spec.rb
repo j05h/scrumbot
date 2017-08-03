@@ -24,6 +24,11 @@ describe Scrum::Bot do
       expect(message: "#{SlackRubyBot.config.user} report #channel", channel: 'channel').to respond_with_slack_message(response)
     end
 
+    it 'responds with todays stuff' do
+      response = "Scrum report for #{Scrum::Bot.bot_time} in <#channel>:\n * <@user>: #{@report}"
+      expect(message: "#{SlackRubyBot.config.user} today", channel: 'channel').to respond_with_slack_message(response)
+    end
+
     it 'does not respond if no channel exists' do
       response = "No one has checked in at <#another-channel>."
       expect(message: "#{SlackRubyBot.config.user} report #another-channel", channel: 'channel').to respond_with_slack_message(response)

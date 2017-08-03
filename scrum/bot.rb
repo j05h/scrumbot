@@ -5,6 +5,21 @@ module Scrum
       def bot_time
         Time.now.strftime("%Y-%m-%d")
       end
+
+      def report(channel_reports, client, data)
+
+        response = ""
+        if channel_reports && !channel_reports.empty?
+          channel_reports.each do |channel, reports|
+            items = reports.map{|r| " * <@#{r.user}>: #{r.text}"}
+            response << "Scrum report for #{Scrum::Bot.bot_time} in <##{channel}>:\n#{items.join("\n")}"
+          end
+        else
+          "No one has checked in at Today"
+        end
+        client.say(channel: data.channel, text: response)
+      end
+
     end
 
     command 'help' do |client, data, match|
@@ -43,6 +58,14 @@ If you run into bugs, yell here: https://github.com/j05h/scrumbot"""
         "No one has checked in at <##{channel}>."
       end
       client.say(channel: data.channel, text: response)
+    end
+
+    command 'today' do |client, data, match|
+      report Report.today.group_by{|r| r.channel}, client, data
+    end
+
+    command 'yesterday' do |client, data, match|
+      report Report.yesterday.group_by{|r| r.channel}, client, data
     end
 
     command 'hi', 'hello' do |client, data, match|

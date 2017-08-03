@@ -4,7 +4,7 @@ module Scrum
   class Web < Sinatra::Base
 
     def report(data)
-      response = '<html><head></head><body>\n'
+      response = "<html><head></head><body>\n"
       data.group_by{|r| r.channel }.each do |channel, reports|
         response << "<h3>#{channel}</h3>\n"
         reports.each do |report|
